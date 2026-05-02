@@ -2,245 +2,354 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-
-<!-- ✅ Quan trọng cho mobile -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CMSNNGUOIAY</title>
 
+<!-- 🌸 Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(120deg, #ffd6e0, #ffe9cc);
-        overflow: hidden;
-        color: #444;
-        font-size: 16px;
-    }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    .page {
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh; /* fix mobile */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        opacity: 0;
-        transform: translateX(40px);
-        transition: all 0.8s ease;
-        text-align: center;
-        padding: 20px;
-    }
+body{
+    font-family: 'Poppins', sans-serif;
+    overflow:hidden;
+    color:white;
+}
 
-    .active {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* 🌈 animated gradient */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+    background-size:400% 400%;
+    animation:gradientMove 12s ease infinite;
+    z-index:-2;
+}
 
-    h1 {
-        font-size: clamp(26px, 6vw, 40px);
-        font-weight: 500;
-    }
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
 
-    p {
-        max-width: 600px;
-        font-size: clamp(15px, 4vw, 18px);
-        line-height: 1.6;
-    }
+/* ✨ particles */
+.particle{
+    position:absolute;
+    font-size:18px;
+    opacity:0.6;
+    animation:float 8s linear infinite;
+}
 
-    button {
-        margin-top: 20px;
-        padding: 14px 26px;
-        border: none;
-        border-radius: 25px;
-        background: #ff9aa2;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+@keyframes float{
+    from{transform:translateY(100vh)}
+    to{transform:translateY(-10vh)}
+}
 
-    button:hover {
-        background: #ff6f7d;
-    }
+/* 📄 page */
+.page{
+    position:absolute;
+    width:100%;
+    height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:20px;
+    text-align:center;
 
-    code {
-        display: block;
-        margin-top: 10px;
-        background: rgba(255,255,255,0.4);
-        padding: 8px;
-        border-radius: 10px;
-        font-size: 14px;
-    }
+    opacity:0;
+    transform:translateY(30px) scale(0.95);
+    filter:blur(6px);
 
-    /* ❤️ floating hearts */
-    .heart {
-        position: absolute;
-        font-size: 18px;
-        animation: float 6s linear infinite;
-        opacity: 0.6;
-    }
+    transition:all 0.8s ease-in-out;
+}
 
-    @keyframes float {
-        from {
-            transform: translateY(100vh);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(-10vh);
-            opacity: 1;
-        }
+.active{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+}
+
+/* 🧊 glass box */
+.box{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+}
+
+/* ✨ text */
+h1{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(28px,6vw,45px);
+}
+
+p{
+    margin-top:10px;
+    font-size:clamp(15px,4vw,18px);
+}
+
+/* 🎁 button */
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff6f91;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 15px #fff;
+}
+
+/* 🖼️ image */
+img{
+    width:200px;
+    border-radius:15px;
+    margin-top:15px;
+    transition:0.4s;
+}
+
+img:hover{
+    transform:scale(1.08);
+}
+
+/* 💥 click burst */
+.burst{
+    position:absolute;
+    pointer-events:none;
+    animation:burst 0.8s forwards;
+}
+
+@keyframes burst{
+    from{transform:scale(0);opacity:1}
+    to{transform:scale(2);opacity:0}
+}
+
+/* 🎉 confetti */
+.confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:white;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(720deg);
+        opacity:0;
     }
+}
+
+/* 🌟 cursor glow */
+.cursor{
+    position:fixed;
+    width:12px;
+    height:12px;
+    background:white;
+    border-radius:50%;
+    pointer-events:none;
+    box-shadow:0 0 10px white;
+}
+
+/* 🌑 final dark */
+.dark{
+    background:rgba(0,0,0,0.6);
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts -->
+<div class="cursor" id="cursor"></div>
+
 <script>
-for(let i=0;i<18;i++){
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random()*100+"%";
-    heart.style.animationDuration = (4 + Math.random()*4)+"s";
-    document.body.appendChild(heart);
+// 🌸 particles
+let icons=["💖","✨","🌸","🫧"];
+for(let i=0;i<25;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(p);
 }
 </script>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
-    <h1 id="typing"></h1>
-    <p>HÉP PI PỚT ĐÂY TU DU</p>
-    <button onclick="nextPage()">Bấm tiếp nè →</button>
+<div class="box">
+<h1 id="typing"></h1>
+<p>HÉP PI PỚT ĐÂY TU DU 💖</p>
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTFtZWJsbmhvbGUwMWxyMm1ldzZyNWRuZjd0cGFwenRrYXZ2am85ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TbyAOtYa4ywrSpvjtm/giphy.gif">
+<button onclick="nextPage()">Bấm tiếp nè →</button>
+</div>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-    <h1>Cún hê lô</h1>
-    <p>
-        Ứ chịu đâu thế mà chậm tay hơn người khác rồi<br>
-        Thôi thì<br>
-        Miền Nam thì có hoa mai, gặp nhau phải có một hai lời chào <br>
-        Miền Bắc thì có hoa đào, gặp nhau phải có lời chào đầu tiên <br>
-        Em cún chào chị ạaaa<br>
-    </p>
-    <button onclick="nextPage()">Continue →</button>
+<div class="box">
+<h1>Cún hê lô 🐶</h1>
+<p>Em cún chào chịii <br>
+    Thế mà bị chậm tay huhuuu T^T
+</p>
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmVkZnVqdXF0NHZpNzlrb3FmcDZyZTljNGYyaXR3Y2p3cWQ4MXR5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HqRn3u6PsIoIFynans/giphy.gif">
+<button onclick="nextPage()">Tiếp →</button>
+</div>
 </div>
 
 <!-- PAGE 3 -->
 <div class="page" id="page3">
-    <h1>Sinh nhật của xinh nhất</h1>
-    <p>
-       Em chúc mừng xinh nhất của em tuổi 22 nhé<br>
-       Em không có biết nói nhiều<br>
-
-        Nên là làm cái này cho đặc sắc tí nha<br>
-    </p>
-    <button onclick="nextPage()">Continue →</button>
+<div class="box">
+<h1>Sinh nhật của xinh nhất ✨</h1>
+<p>22 tuổi rồi đó nhaaaa</p>
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHBvb2c2ejgyYXZ4MXE3MW43ZTFhODdmMnR1cmQ0OWNoanVrMGlyeCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/8wfoaIjVc0FBaLu5xH/giphy.gif">
+<button onclick="nextPage()">Tiếp nè →</button>
+</div>
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="page4">
-    <h1>Em chúc cho</h1>
-    <p>
-        Chị luôn mạnh khỏe<br>
-        Đừng để bị ốm nhiều nhé<br>
-
-        Cố gắng ngủ nghỉ đầy đủ<br>
-        Đừng thức khuya hoài<br>
-        Cười nhiều lên nhé, đừng gắng sức <br>
-        CHÚC CHỊ THÍCH EM NHIỀU HƠN 
-     <code>
-let tuoi = 21;<br>
-tuoi += 1;<br><br>
-
-// Thêm một tuổi mới rồi,
-// lại thêm một năm ý nghĩa trong đời
-let hanhPhuc = "mong rằng luôn ở bên cậu";<br><br>
-
-console.log("Tuổi mới: " + tuoi);<br>
-console.log("Chúc cậu phải thật hạnh phúc nhé");<br>
-console.log(hanhPhuc);
-</code>
-    </p>
-    <button onclick="nextPage()">Continue →</button>
+<div class="box">
+<h1>Em chúc cho 💌</h1>
+<p>Chị luôn mạnh khỏe, đừng để bị ốm nhé <br>
+    Ngủ nghỉ đầy đủ hơn, đừng thức khuya nhiều <br>
+    Ăn ngày đủ 3 bữa (khó quá thì 2) <br>
+    Tài khoản không âm nhiều <br>
+    Chúc cho chị luôn hạnh phúc và vui vẻ <br>
+    Mong sao ngày tháng sau này không khó khăn với chị quá nhé 💖</p>
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFldml5b25uempqMm54NzY4bDk3Y24wOXFwaTl1dW1tbXY2aHZsOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jp2KXzsPtoKFG/giphy.gif">
+<button onclick="nextPage()">Còn nữa →</button>
+</div>
 </div>
 
 <!-- PAGE 5 -->
 <div class="page" id="page5">
-    <h1>Điều cuối cùng</h1>
-    <p id="finalMessage"></p>
-    <button onclick="revealSecret()">Reveal ✨</button>
-    <p id="secret" style="opacity:0; margin-top:15px; transition:1s;"></p>
+<div class="dark"></div>
+<div class="box">
+<h1>Điều cuối cùng ✨</h1>
+<p id="finalMessage"></p>
+<button onclick="revealSecret()">Hết rồi ạ 💖</button>
+<p id="secret" style="opacity:0;transition:1s;"></p>
+</div>
 </div>
 
 <script>
-let currentPage = 1;
+let currentPage=1;
 
-// ❤️ growing emotion variable
-let love = 1;
-setInterval(() => {
-    love += 1;
-}, 1000);
+// 💖 emotion
+let love=1;
+let miss=0;
 
-// 👉 chuyển trang + rung nhẹ mobile
+
+setInterval(()=>{
+    love+=2;
+    miss+=1;
+},1000);
+
+// 👉 page switch
 function nextPage(){
     document.getElementById("page"+currentPage).classList.remove("active");
     currentPage++;
 
-    if(navigator.vibrate){
-        navigator.vibrate(30);
-    }
+    if(navigator.vibrate) navigator.vibrate(20);
 
     document.getElementById("page"+currentPage).classList.add("active");
 }
 
-// 👉 tap anywhere (mobile friendly)
-document.addEventListener("click", function(e){
-    if(e.target.tagName !== "BUTTON"){
-        if(currentPage < 5){
-            nextPage();
-        }
+// 👉 tap anywhere
+document.addEventListener("click",e=>{
+    createBurst(e.clientX,e.clientY);
+
+    if(e.target.tagName!=="BUTTON" && currentPage<5){
+        nextPage();
     }
 });
 
-// ✨ typing effect (WOW moment)
-let text = "我喜欢你";
-let i = 0;
-function typeEffect(){
-    if(i < text.length){
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeEffect, 80);
+// 💥 burst effect
+function createBurst(x,y){
+    for(let i=0;i<8;i++){
+        let b=document.createElement("div");
+        b.className="burst";
+        b.innerHTML="💖";
+        b.style.left=x+"px";
+        b.style.top=y+"px";
+        document.body.appendChild(b);
+
+        setTimeout(()=>b.remove(),800);
     }
 }
-typeEffect();
+
+// ✨ typing
+let text="我喜欢你";
+let i=0;
+function type(){
+    if(i<text.length){
+        typing.innerHTML+=text[i++];
+        setTimeout(type,80);
+    }
+}
+type();
 
 // ✨ final typing
-let finalText = "Em thích chị lắm";
-let j = 0;
+let final="Em thích chị";
+let j=0;
 function finalTyping(){
-    if(j < finalText.length){
-        document.getElementById("finalMessage").innerHTML += finalText.charAt(j);
-        j++;
-        setTimeout(finalTyping, 40);
+    if(j<final.length){
+        finalMessage.innerHTML+=final[j++];
+        setTimeout(finalTyping,40);
     }
 }
-setTimeout(finalTyping, 4500);
+setTimeout(finalTyping,4000);
 
-// 💌 hidden message
+// 🎉 confetti
+function confetti(){
+    for(let i=0;i<40;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"%";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+
+// 💌 secret reveal
 function revealSecret(){
-    let secret = document.getElementById("secret");
-    secret.style.opacity = 1;
+    let s=document.getElementById("secret");
+    s.style.opacity=1;
 
-    secret.innerHTML = `
-    I’m really glad you exist. ❤️<br><br>
-    <small>// love = ${love}</small>
+    confetti();
+
+    s.innerHTML=`
+    <small>
+    thạ tim = ${love};<br>
+    nho nammm = ${miss};<br>
+    
+    </small>
     `;
 }
+
+// 🌟 cursor trail
+document.addEventListener("mousemove",e=>{
+    let c=document.getElementById("cursor");
+    c.style.left=e.clientX+"px";
+    c.style.top=e.clientY+"px";
+});
 </script>
 
 </body>
