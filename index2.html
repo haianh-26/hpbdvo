@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<!-- ✅ Quan trọng cho mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<title>CMSNNGUOIAY</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(120deg, #ffd6e0, #ffe9cc);
+        overflow: hidden;
+        color: #444;
+        font-size: 16px;
+    }
+
+    .page {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh; /* fix mobile */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateX(40px);
+        transition: all 0.8s ease;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    h1 {
+        font-size: clamp(26px, 6vw, 40px);
+        font-weight: 500;
+    }
+
+    p {
+        max-width: 600px;
+        font-size: clamp(15px, 4vw, 18px);
+        line-height: 1.6;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 14px 26px;
+        border: none;
+        border-radius: 25px;
+        background: #ff9aa2;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #ff6f7d;
+    }
+
+    code {
+        display: block;
+        margin-top: 10px;
+        background: rgba(255,255,255,0.4);
+        padding: 8px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    /* ❤️ floating hearts */
+    .heart {
+        position: absolute;
+        font-size: 18px;
+        animation: float 6s linear infinite;
+        opacity: 0.6;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(-10vh);
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+<script>
+for(let i=0;i<18;i++){
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random()*100+"%";
+    heart.style.animationDuration = (4 + Math.random()*4)+"s";
+    document.body.appendChild(heart);
+}
+</script>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1 id="typing"></h1>
+    <p>HÉP PI PỚT ĐÂY TU DU</p>
+    <button onclick="nextPage()">Bấm tiếp nè →</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>Cún hê lô</h1>
+    <p>
+        Ứ chịu đâu thế mà chậm tay hơn người khác rồi<br>
+        Thôi thì<br>
+        Miền Nam thì có hoa mai, gặp nhau phải có một hai lời chào <br>
+        Miền Bắc thì có hoa đào, gặp nhau phải có lời chào đầu tiên <br>
+        Em cún chào chị ạaaa<br>
+    </p>
+    <button onclick="nextPage()">Continue →</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h1>Sinh nhật của xinh nhất</h1>
+    <p>
+       Em chúc mừng xinh nhất của em tuổi 22 nhé<br>
+       Em không có biết nói nhiều<br>
+
+        Nên là làm cái này cho đặc sắc tí nha<br>
+    </p>
+    <button onclick="nextPage()">Continue →</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>Em chúc cho</h1>
+    <p>
+        Chị luôn mạnh khỏe<br>
+        Đừng để bị ốm nhiều nhé<br>
+
+        Cố gắng ngủ nghỉ đầy đủ<br>
+        Đừng thức khuya hoài<br>
+        Cười nhiều lên nhé, đừng gắng sức <br>
+        CHÚC CHỊ THÍCH EM NHIỀU HƠN 
+     <code>
+let tuoi = 21;<br>
+tuoi += 1;<br><br>
+
+// Thêm một tuổi mới rồi,
+// lại thêm một năm ý nghĩa trong đời
+let hanhPhuc = "mong rằng luôn ở bên cậu";<br><br>
+
+console.log("Tuổi mới: " + tuoi);<br>
+console.log("Chúc cậu phải thật hạnh phúc nhé");<br>
+console.log(hanhPhuc);
+</code>
+    </p>
+    <button onclick="nextPage()">Continue →</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+    <h1>Điều cuối cùng</h1>
+    <p id="finalMessage"></p>
+    <button onclick="revealSecret()">Reveal ✨</button>
+    <p id="secret" style="opacity:0; margin-top:15px; transition:1s;"></p>
+</div>
+
+<script>
+let currentPage = 1;
+
+// ❤️ growing emotion variable
+let love = 1;
+setInterval(() => {
+    love += 1;
+}, 1000);
+
+// 👉 chuyển trang + rung nhẹ mobile
+function nextPage(){
+    document.getElementById("page"+currentPage).classList.remove("active");
+    currentPage++;
+
+    if(navigator.vibrate){
+        navigator.vibrate(30);
+    }
+
+    document.getElementById("page"+currentPage).classList.add("active");
+}
+
+// 👉 tap anywhere (mobile friendly)
+document.addEventListener("click", function(e){
+    if(e.target.tagName !== "BUTTON"){
+        if(currentPage < 5){
+            nextPage();
+        }
+    }
+});
+
+// ✨ typing effect (WOW moment)
+let text = "我喜欢你";
+let i = 0;
+function typeEffect(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 80);
+    }
+}
+typeEffect();
+
+// ✨ final typing
+let finalText = "Em thích chị lắm";
+let j = 0;
+function finalTyping(){
+    if(j < finalText.length){
+        document.getElementById("finalMessage").innerHTML += finalText.charAt(j);
+        j++;
+        setTimeout(finalTyping, 40);
+    }
+}
+setTimeout(finalTyping, 4500);
+
+// 💌 hidden message
+function revealSecret(){
+    let secret = document.getElementById("secret");
+    secret.style.opacity = 1;
+
+    secret.innerHTML = `
+    I’m really glad you exist. ❤️<br><br>
+    <small>// love = ${love}</small>
+    `;
+}
+</script>
+
+</body>
+</html>
